@@ -41,6 +41,8 @@ source $HOME/dotfiles/antigen.zsh
 
 antigen use oh-my-zsh
 antigen bundle git
+antigen bundle composer
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen apply
+
