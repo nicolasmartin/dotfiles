@@ -18,11 +18,17 @@ echo "Setting up vim..."
 lnif $dotfiles/.vim $HOME/.vim
 lnif $dotfiles/.vimrc $HOME/.vimrc
 
+
 echo "Setting up gitconfig..."
 lnif $dotfiles/.gitconfig $HOME/.gitconfig
 
 
 echo "Setting up zsh..."
 lnif $dotfiles/.zshrc $HOME/.zshrc
+
+echo "Setting up phpactor via composer..."
+cd $dotfiles/.vim/bundle/phpactor
+composer install
+
 
 zsh
