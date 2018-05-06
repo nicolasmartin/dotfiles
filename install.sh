@@ -12,7 +12,10 @@ lnif() {
 
 lnif $dotfiles/.vim $HOME/.vim
 lnif $dotfiles/.vimrc $HOME/.vimrc
+
+
+
+echo "Setting up zsh..."
 lnif $dotfiles/.zshrc $HOME/.zshrc
 
-
-
+zsh
