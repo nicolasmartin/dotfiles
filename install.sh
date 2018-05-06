@@ -2,7 +2,11 @@
 
 dotfiles="$HOME/dotfiles"
 
-echo "Setting up vim..."
+echo "Setting up submodules..."
+cd $dotfiles
+git submodule init
+git submodule update
+
 
 lnif() {
   if [ ! -e $2 ] ; then
@@ -10,9 +14,12 @@ lnif() {
   fi
 }
 
+echo "Setting up vim..."
 lnif $dotfiles/.vim $HOME/.vim
 lnif $dotfiles/.vimrc $HOME/.vimrc
 
+echo "Setting up gitconfig..."
+lnif $dotfiles/.gitconfig $HOME/.gitconfig
 
 
 echo "Setting up zsh..."
