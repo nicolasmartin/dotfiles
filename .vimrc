@@ -1,7 +1,34 @@
+let g:phpactorPhpBin = "/opt/rh/rh-php70/root/bin/php"
+
 execute pathogen#infect()
+
+
+
 
 se mouse=nv
 se bg=dark
+
+set antialias
+set nocursorline
+set nocompatible
+set bs=2
+set autowrite
+set noswapfile
+set noautowrite
+
+autocmd! bufwritepost .vimrc source % " Automatically reload .vimrc when changing
+
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+
+
 
 
 
@@ -38,6 +65,7 @@ set encoding=UTF-8
 let g:airline_powerline_fonts = 1
 
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1 
+
 
 
 "for  CSV plugin'
