@@ -1,6 +1,6 @@
 execute pathogen#infect()
 
-se mouse=a
+se mouse=nv
 se bg=dark
 
 
@@ -43,3 +43,6 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 "for  CSV plugin'
 filetype plugin on 
 
+
+
+let g:ctrlp_working_path_mode = 'ra'
