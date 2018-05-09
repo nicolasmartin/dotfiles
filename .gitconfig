@@ -1,3 +1,11 @@
 [user]
 	email = nicolas@kuantic.com
 	name = Nicolas Martin
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+
+[alias]
+    st = status
