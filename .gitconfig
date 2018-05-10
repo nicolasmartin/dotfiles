@@ -9,3 +9,5 @@
 
 [alias]
     st = status
+[push]
+	default = simple
