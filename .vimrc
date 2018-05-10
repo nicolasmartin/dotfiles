@@ -42,6 +42,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" RGB color highlight on CSS and html
+let g:colorizer_auto_filetype='css,html'
+
 
 " phpcd
 autocmd FileType php setlocal omnifunc=phpcd#CompletePHP
