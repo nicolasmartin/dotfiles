@@ -54,7 +54,7 @@ lnif $dotfiles/.vimrc $HOME/.vimrc
 
 title "Setting up gitconfig..."
 lnif $dotfiles/.gitconfig $HOME/.gitconfig
-
+ln -s $dotfiles/.git_bash $HOME/.git_bash
 
 
 title "Setting up shell config..."
@@ -65,6 +65,12 @@ then
         rm $HOME/.bashrc
 fi
 ln -s $dotfiles/.bashrc $HOME/.bashrc
+
+
+
+
+
+
 
 title "Setting up phpactor via composer..."
 cd $dotfiles/.vim/bundle/phpactor

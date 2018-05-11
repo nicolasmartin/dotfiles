@@ -1,3 +1,4 @@
+[ -r $HOME/.git_bash ] && source $HOME/.git_bash
 [ -r /etc/bashrc ] && source /etc/bashrc
 [ -r /etc/bash_completion ] && source /etc/bash_completion
 [ -r ~/.git-completion.bash ] && source ~/.git-completion.bash
