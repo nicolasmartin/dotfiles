@@ -65,13 +65,3 @@ then
         rm $HOME/.bashrc
 fi
 ln -s $dotfiles/.bashrc $HOME/.bashrc
-
-
-
-
-
-
-
-title "Setting up phpactor via composer..."
-cd $dotfiles/.vim/bundle/phpactor
-composer install
