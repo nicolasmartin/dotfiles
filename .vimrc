@@ -33,6 +33,15 @@ autocmd! bufwritepost .vimrc source %
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
 
+"vdebug
+if !exists('g:vdebug_options')
+      let g:vdebug_options = {}
+    endif
+let g:vdebug_options.port = 9001
+let g:vdebug_options.debug_file = "~/vdebug.log"
+let g:vdebug_options.debug_file_level = 2
+
+
 " syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}

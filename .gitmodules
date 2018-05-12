@@ -28,3 +28,6 @@
 [submodule ".vim/bundle/phpcd.vim"]
 	path = .vim/bundle/phpcd.vim
 	url = https://github.com/lvht/phpcd.vim
+[submodule ".vim/bundle/vdebug"]
+	path = .vim/bundle/vdebug
+	url = https://github.com/vim-vdebug/vdebug
