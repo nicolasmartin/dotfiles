@@ -57,8 +57,8 @@ let g:colorizer_auto_filetype='css,html'
 
 " phpcd
 autocmd FileType php setlocal omnifunc=phpcd#CompletePHP
-silent! nnoremap <F9> :call phpcd#JumpToDefinition('normal')<CR>
-silent! nnoremap <F8> :call phpcd#JumpBack()<CR>
+silent! nnoremap <leader>d :call phpcd#JumpToDefinition('normal')<CR>
+silent! nnoremap <leader>b :call phpcd#JumpBack()<CR>
 
 
 " NERDTree
