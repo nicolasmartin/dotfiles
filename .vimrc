@@ -30,7 +30,7 @@ set history=700
 autocmd! bufwritepost .vimrc source % 
 
 
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabDefaultCompletionType = "<c-x><c-p>"
 
 
 "vdebug
@@ -61,8 +61,15 @@ silent! nnoremap <leader>d :call phpcd#JumpToDefinition('normal')<CR>
 silent! nnoremap <leader>b :call phpcd#JumpBack()<CR>
 
 
-" NERDTree
+" airline
 let g:airline_powerline_fonts = 1
+let g:airline_left_sep = "\uE0B4"
+let g:airline_right_sep = "\uE0B6"
+" set the CN (column number) symbol:
+let g:airline_section_z = airline#section#create(["\uE0A1" . '%{line(".")}' . "\uE0A3" . '%{col(".")}'])
+
+
+" NERDTree
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1 
 let g:NERDTreeMouseMode = 2 " Single click to open dir
 
@@ -250,8 +257,8 @@ set expandtab
 set smarttab
 
 " 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
 
 " Linebreak on 500 characters
 set lbr
@@ -484,4 +491,6 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
+
+
 
