@@ -31,3 +31,6 @@
 [submodule ".vim/bundle/vdebug"]
 	path = .vim/bundle/vdebug
 	url = https://github.com/vim-vdebug/vdebug
+[submodule "tmux-themepack"]
+	path = tmux-themepack
+	url = https://github.com/jimeh/tmux-themepack.git

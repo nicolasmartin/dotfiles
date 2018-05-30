@@ -21,9 +21,6 @@ if [[ $COMPOSER_IS_INSTALLED -ne 0 ]]; then
     hhvm -v ResourceLimit.SocketDefaultTimeout=30 -v Http.SlowQueryThreshold=30000 installer
     sudo mv composer.phar /usr/local/bin/composer
     sudo rm installer
-else 
-    title "Updating Composer"
-    composer self-update
 fi
 
 
@@ -65,3 +62,10 @@ then
         rm $HOME/.bashrc
 fi
 ln -s $dotfiles/.bashrc $HOME/.bashrc
+
+
+
+#tmux
+ln -s $dotfiles/.tmux.conf $HOME/.tmux.conf
+ln -s $dotfiles/tmux-themepack $HOME/.tmux-themepack
+
