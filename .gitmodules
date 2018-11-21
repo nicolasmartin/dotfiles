@@ -16,9 +16,6 @@
 [submodule ".vim/bundle/phpactor"]
 	path = .vim/bundle/phpactor
 	url = https://github.com/phpactor/phpactor
-[submodule ".vim/bundle/colorizer"]
-	path = .vim/bundle/colorizer
-	url = https://github.com/lilydjwg/colorizer
 [submodule ".vim/bundle/syntastic"]
 	path = .vim/bundle/syntastic
 	url = https://github.com/vim-syntastic/syntastic
