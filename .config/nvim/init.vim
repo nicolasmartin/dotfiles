@@ -1,47 +1,82 @@
-" for phpactor on bo1
-"let g:phpactorPhpBin = "/opt/rh/rh-php70/root/bin/php"
+let g:python3_host_prog = '/opt/rh/rh-python36/root/bin/python3'
+set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath = &runtimepath
+"source ~/.vimrc
 
-execute pathogen#infect()
+
+call plug#begin('~/.vim/plugged')
+" FZF
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+map <C-P> :Files<CR>
+map <C-B> :Buffers<CR>
+map <C-A> :Ag<CR>
+
+" Airline
+Plug 'vim-airline/vim-airline'
+let g:airline_powerline_fonts = 1
+let g:airline_left_sep = "\uE0B4"
+let g:airline_right_sep = "\uE0B6"
+
+" NERDTREE et les icones jolies
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'ryanoasis/vim-devicons'
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1 
+let g:NERDTreeMouseMode = 2 " Single click to open dir
+let g:ctrlp_working_path_mode = 'ra'
+map <F5> :NERDTreeToggle<CR>
+
+" ncm2 autocompletion avec phpactor pour php
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}
+Plug 'phpactor/ncm2-phpactor'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-tmux'
+Plug 'ncm2/ncm2-path'
+autocmd FileType php setlocal omnifunc=phpactor#Complete
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+map <2-LeftMouse> :call phpactor#GotoDefinition()<CR>
+
+" Colorschemes
+Plug 'freeo/vim-kalisi'
+Plug 'w0ng/vim-hybrid'
+Plug 'bitterjug/vim-colors-bitterjug'
+Plug 'jonathanfilip/vim-lucius'
+Plug 'crusoexia/vim-monokai'
+Plug 'jacoborus/tender.vim'
+Plug 'pbrisbin/vim-colors-off'
+Plug 'muellan/am-colors'
+Plug 'blueshirts/darcula'
+call plug#end()
+
+
+" set the CN (column number) symbol:
+let g:airline_section_z = airline#section#create(["\uE0A1" . '%{line(".")}' . "\uE0A3" . '%{col(".")}'])
+
+
 
 
 
 map <C-c> :q<CR>
 
-map <C-Left> :bprevious<CR>
-
 " mouse only on visual and normal mode
 se mouse=nv
 se bg=dark
 
-set antialias
 set nocursorline
 set nocompatible
 set bs=2
 set autowrite
 set noswapfile
 set noautowrite
-
 set t_Co=256
 set encoding=UTF-8
-
 " Sets how many lines of history VIM has to remember
 set history=700
-
 " Automatically reload .vimrc when changing
 autocmd! bufwritepost .vimrc source % 
-
-
-let g:SuperTabDefaultCompletionType = "<c-x><c-p>"
-
-
-"vdebug
-if !exists('g:vdebug_options')
-      let g:vdebug_options = {}
-    endif
-let g:vdebug_options.port = 9001
-let g:vdebug_options.debug_file = "~/vdebug.log"
-let g:vdebug_options.debug_file_level = 2
-
 
 " syntastic
 set statusline+=%#warningmsg#
@@ -56,26 +91,8 @@ let g:syntastic_check_on_wq = 0
 let g:colorizer_auto_filetype='css,html'
 
 
-" phpcd
-autocmd FileType php setlocal omnifunc=phpcd#CompletePHP
-silent! nnoremap <leader>d :call phpcd#JumpToDefinition('normal')<CR>
-silent! nnoremap <leader>b :call phpcd#JumpBack()<CR>
 
 
-" airline
-let g:airline_powerline_fonts = 1
-let g:airline_left_sep = "\uE0B4"
-let g:airline_right_sep = "\uE0B6"
-" set the CN (column number) symbol:
-let g:airline_section_z = airline#section#create(["\uE0A1" . '%{line(".")}' . "\uE0A3" . '%{col(".")}'])
-
-
-" NERDTree
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1 
-let g:NERDTreeMouseMode = 2 " Single click to open dir
-
-
-let g:ctrlp_working_path_mode = 'ra'
 
 
 " from phphupet vagrant
@@ -155,7 +172,7 @@ nmap <leader>w :w!<cr>
 set so=2
 
 " Turn on the WiLd menu
-set wildmenu
+"set wildmenu
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
@@ -217,12 +234,8 @@ set foldcolumn=1
 " Enable syntax highlighting
 syntax enable
 
-try
-    colorscheme desert
-catch
-endtry
+colorscheme amdark
 
-set background=dark
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -343,155 +356,3 @@ set laststatus=2
 
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Editing mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remap VIM 0 to first non-blank character
-map 0 ^
-
-" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
-endif
-
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
-autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vimgrep searching and cope displaying
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" When you press gv you vimgrep after the selected text
-vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
-
-" Open vimgrep and put the cursor in the right position
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
-
-" Vimgreps in the current file
-map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
-
-" When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
-
-" Do :help cope if you are unsure what cope is. It's super useful!
-"
-" When you search with vimgrep, display your results in cope by doing:
-"   <leader>cc
-"
-" To go to the next search result do:
-"   <leader>n
-"
-" To go to the previous search results do:
-"   <leader>p
-"
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
-
-" Shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
-" Quickly open a buffer for scripbble
-map <leader>q :e ~/buffer<cr>
-
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Helper functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
-endfunction
-
-function! VisualSelection(direction, extra_filter) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
-
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.' . a:extra_filter)
-    elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    endif
-
-    let @/ = l:pattern
-    let @" = l:saved_reg
-endfunction
-
-
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    en
-    return ''
-endfunction
-
-" Don't close window, when deleting a buffer
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-   let l:currentBufNum = bufnr("%")
-   let l:alternateBufNum = bufnr("#")
-
-   if buflisted(l:alternateBufNum)
-     buffer #
-   else
-     bnext
-   endif
-
-   if bufnr("%") == l:currentBufNum
-     new
-   endif
-
-   if buflisted(l:currentBufNum)
-     execute("bdelete! ".l:currentBufNum)
-   endif
-endfunction
-
-
-
