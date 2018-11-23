@@ -1,3 +1,5 @@
+PATH=$PATH:~/.fzf/bin
+
 alias vi=nvim
 export TERM=xterm-256color
 
