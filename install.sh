@@ -69,3 +69,7 @@ ln -s $dotfiles/.bashrc $HOME/.bashrc
 ln -s $dotfiles/.tmux.conf $HOME/.tmux.conf
 ln -s $dotfiles/tmux-themepack $HOME/.tmux-themepack
 
+
+#config
+ln -s $dotfiles/.config $HOME/.config
+

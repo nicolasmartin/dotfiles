@@ -7,6 +7,7 @@ execute pathogen#infect()
 
 map <C-c> :q<CR>
 
+map <C-Left> :bprevious<CR>
 
 " mouse only on visual and normal mode
 se mouse=nv
@@ -151,7 +152,7 @@ nmap <leader>w :w!<cr>
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
+set so=2
 
 " Turn on the WiLd menu
 set wildmenu
