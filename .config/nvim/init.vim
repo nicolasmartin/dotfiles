@@ -1,8 +1,10 @@
-let g:python3_host_prog = '/opt/rh/rh-python36/root/bin/python3'
+let g:python3_host_prog = '/usr/bin/python3'
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
-"source ~/.vimrc
 
+
+" Mapping for phpactor
+map <Leader>u :call phpactor#UseAdd()<CR>
 
 call plug#begin('~/.vim/plugged')
 " FZF
