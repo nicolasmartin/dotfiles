@@ -4,7 +4,7 @@ let &packpath = &runtimepath
 
 
 " Mapping for phpactor
-map <Leader>u :call phpactor#UseAdd()<CR>
+map <Leader>a :call phpactor#UseAdd()<CR>
 
 call plug#begin('~/.vim/plugged')
 " FZF
