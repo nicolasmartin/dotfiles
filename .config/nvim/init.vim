@@ -2,11 +2,16 @@ let g:python3_host_prog = '/usr/bin/python3'
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
 
-" Mapping for phpactor
-map <Leader>a :call phpactor#UseAdd()<CR>
 
 call plug#begin('~/.vim/plugged')
+Plug 'jlanzarotta/bufexplorer'
+Plug 'mattn/emmet-vim'
+
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -19,6 +24,11 @@ Plug 'vim-airline/vim-airline'
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = "\uE0B4"
 let g:airline_right_sep = "\uE0B6"
+let g:airline#extensions#tabline#enabled = 1 "enable the tabline
+let g:airline#extensions#tabline#fnamemod = ':t' " show just the filename of buffers in the tab line
+let g:airline_detect_modified=1
+let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " NERDTREE et les icones jolies
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -40,6 +50,8 @@ autocmd FileType php setlocal omnifunc=phpactor#Complete
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 map <2-LeftMouse> :call phpactor#GotoDefinition()<CR>
+map <leader>d :call phpactor#GotoDefinition()<CR>
+map <leader>a :call phpactor#UseAdd()<CR>
 
 " Colorschemes
 Plug 'freeo/vim-kalisi'
@@ -154,10 +166,6 @@ filetype indent on
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -358,3 +366,9 @@ set laststatus=2
 
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+
+
+set ttyfast 
+
+
+map <leader>b :BufExplorer<CR>

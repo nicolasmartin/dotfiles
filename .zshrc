@@ -51,9 +51,13 @@ antigen bundle git
 antigen bundle composer
 antigen bundle jerguslejko/zsh-symfony-completion
 antigen bundle zsh-users/zsh-syntax-highlighting
-antigen theme eendroroy/alien
+antigen bundle zsh-users/zsh-autosuggestions
+#antigen theme eendroroy/alien
+antigen theme agnoster/agnoster-zsh-theme
+#antigen theme https://github.com/denysdovhan/spaceship-prompt spaceship
 antigen bundle voronkovich/symfony.plugin.zsh
-antigen theme candy
+#antigen theme candy
+antigen bundle changyuheng/zsh-interactive-cd  # permet d'utiliser fzf pour la commande cd
 antigen apply
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
