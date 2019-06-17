@@ -19,11 +19,11 @@ lnif() {
 #################
 
 title "Linking ~/.config folder"
-ln -s $dotfiles/.config $HOME/.config
+ln -s "$dotfiles/.config" "$HOME/.config"
 
 composer -v > /dev/null 2>&1
 COMPOSER_IS_INSTALLED=$?
-if [[ $COMPOSER_IS_INSTALLED -ne 0 ]]; then
+if [[ "$COMPOSER_IS_INSTALLED" -ne 0 ]]; then
     title "Installing Composer"
     udo wget --quiet https://getcomposer.org/installer
     hhvm -v ResourceLimit.SocketDefaultTimeout=30 -v Http.SlowQueryThreshold=30000 installer
@@ -33,13 +33,13 @@ fi
 
 
 title "Setting up submodules..."
-cd $dotfiles
+cd "$dotfiles"
 git submodule init
 git submodule update
 
 
 title "Setting up vim..."
-lnif $dotfiles/.vim $HOME/.vim
+lnif "$dotfiles/.vim" "$HOME/.vim"
 if [ -e $HOME/.vimrc ]
 then
 	rm $HOME/.vimrc
@@ -48,23 +48,23 @@ lnif $dotfiles/.vimrc $HOME/.vimrc
 
 
 title "Setting up gitconfig..."
-lnif $dotfiles/.gitconfig $HOME/.gitconfig
-ln -s $dotfiles/.git_bash $HOME/.git_bash
+lnif "$dotfiles/.gitconfig" "$HOME/.gitconfig"
+ln -s "$dotfiles/.git_bash" "$HOME/.git_bash"
 
 
 title "Setting up shell config..."
-lnif $dotfiles/.zshrc $HOME/.zshrc
+lnif "$dotfiles/.zshrc" "$HOME/.zshrc"
 
 if [ -e $HOME/.bashrc ]
 then
         rm $HOME/.bashrc
 fi
-ln -s $dotfiles/.bashrc $HOME/.bashrc
+ln -s "$dotfiles/.bashrc" "$HOME/.bashrc"
 
 
 #tmux
-ln -s $dotfiles/.tmux.conf $HOME/.tmux.conf
-ln -s $dotfiles/tmux-themepack $HOME/.tmux-themepack
+ln -s "$dotfiles/.tmux.conf" "$HOME/.tmux.conf"
+ln -s "$dotfiles/tmux-themepack" "$HOME/.tmux-themepack"
 
 
 title "Installing NEOVIM with all Python stuff"
