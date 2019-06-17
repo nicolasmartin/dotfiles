@@ -377,8 +377,9 @@ set laststatus=2
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
-
 set ttyfast 
 
-
 map <leader>b :BufExplorer<CR>
+
+autocmd Filetype * set shiftwidth=2
+autocmd Filetype yaml set shiftwidth=4
