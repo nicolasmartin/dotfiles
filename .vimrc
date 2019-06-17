@@ -1,5 +1,5 @@
 " for phpactor on bo1
-"let g:phpactorPhpBin = "/opt/rh/rh-php70/root/bin/php"
+"let g:phpactorPhpBin = "/opt/rh/rh-php72/root/bin/php"
 
 execute pathogen#infect()
 
@@ -77,6 +77,11 @@ let g:NERDTreeMouseMode = 2 " Single click to open dir
 
 let g:ctrlp_working_path_mode = 'ra'
 
+
+
+
+" BufExplorer
+:map <F6> :Buffers<CR>
 
 " from phphupet vagrant
 

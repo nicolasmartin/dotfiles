@@ -1,3 +1,4 @@
 .antigen
 .vim/plugged
 .vim/.netrwhist
+.config
