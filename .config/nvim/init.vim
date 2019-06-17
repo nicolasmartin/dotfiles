@@ -1,4 +1,9 @@
-let g:python3_host_prog = '/usr/bin/python3'
+if filereadable("/opt/rh/rh-python36/root/bin/python3") 
+  let g:python3_host_prog = "/opt/rh/rh-python36/root/bin/python3"
+else 
+  let g:python3_host_prog = '/usr/bin/python3'
+endif
+
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 
@@ -8,7 +13,12 @@ let mapleader = ","
 let g:mapleader = ","
 
 
+" To open diffs in git on vertical
+:set diffopt+=vertical
+
+
 call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-fugitive'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'mattn/emmet-vim'
 
@@ -16,7 +26,7 @@ Plug 'mattn/emmet-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 map <C-P> :Files<CR>
-map <C-B> :Buffers<CR>
+map <F6> :Buffers<CR>
 map <C-A> :Ag<CR>
 
 " Airline
