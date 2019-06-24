@@ -25,8 +25,7 @@ composer -v > /dev/null 2>&1
 COMPOSER_IS_INSTALLED=$?
 if [[ "$COMPOSER_IS_INSTALLED" -ne 0 ]]; then
     title "Installing Composer"
-    udo wget --quiet https://getcomposer.org/installer
-    hhvm -v ResourceLimit.SocketDefaultTimeout=30 -v Http.SlowQueryThreshold=30000 installer
+    sudo wget --quiet https://getcomposer.org/installer
     sudo mv composer.phar /usr/local/bin/composer
     sudo rm installer
 fi
@@ -68,12 +67,7 @@ ln -s "$dotfiles/tmux-themepack" "$HOME/.tmux-themepack"
 
 
 title "Installing NEOVIM with all Python stuff"
-sudo apt-get install software-properties-common
-sudo apt-add-repository ppa:neovim-ppa/stable
-sudo apt-get update
-sudo apt-get install neovim
-sudo apt-get install python-dev python-pip python3-dev python3-pip
-pip3 install neovim --user
+sudo install neovim
 
 title "Installing silversearcher ag command"
-sudo apt-get install silversearcher-ag
+sudo yum install the_silver_searcher
