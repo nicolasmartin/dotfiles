@@ -12,6 +12,7 @@ echo ""
 
 lnif() {
   if [ ! -e $2 ] ; then
+    title "Setting symbolic of $1 to $2"
     ln -s $1 $2
   fi
 }
@@ -19,7 +20,10 @@ lnif() {
 #################
 
 title "Linking ~/.config folder"
-ln -s "$dotfiles/.config" "$HOME/.config"
+lnif $dotfiles/.config $HOME/.config
+
+echo "$dotfiles/.config $HOME/.config"
+
 
 composer -v > /dev/null 2>&1
 COMPOSER_IS_INSTALLED=$?
@@ -48,7 +52,7 @@ lnif $dotfiles/.vimrc $HOME/.vimrc
 
 title "Setting up gitconfig..."
 lnif "$dotfiles/.gitconfig" "$HOME/.gitconfig"
-ln -s "$dotfiles/.git_bash" "$HOME/.git_bash"
+lnif "$dotfiles/.git_bash" "$HOME/.git_bash"
 
 
 title "Setting up shell config..."
@@ -58,16 +62,16 @@ if [ -e $HOME/.bashrc ]
 then
         rm $HOME/.bashrc
 fi
-ln -s "$dotfiles/.bashrc" "$HOME/.bashrc"
+lnif $dotfiles/.bashrc $HOME/.bashrc
 
 
 #tmux
-ln -s "$dotfiles/.tmux.conf" "$HOME/.tmux.conf"
-ln -s "$dotfiles/tmux-themepack" "$HOME/.tmux-themepack"
+lnif $dotfiles/.tmux.conf $HOME/.tmux.conf
+lnif $dotfiles/tmux-themepack $HOME/.tmux-themepack
 
 
-title "Installing NEOVIM with all Python stuff"
-sudo install neovim
+title "Installing NEOVIM"
+sudo yum install install neovim
 
 title "Installing silversearcher ag command"
 sudo yum install the_silver_searcher
